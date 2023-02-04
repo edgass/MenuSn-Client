@@ -1,0 +1,122 @@
+/* Style the header */
+.header {
+
+  }
+  
+  /* Page content */
+  .content {
+    padding: 16px;
+  }
+  
+  /* The sticky class is added to the header with JS when it reaches its scroll position */
+  .sticky {
+    position: fixed;
+    top: 0;
+   /* width: 100% */
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+
+
+
+
+
+
+    .active_underline {
+       text-decoration: none; 
+       position: relative; 
+     }   
+
+    .active_underline:after {
+        position: absolute;
+        content: '';
+        height: 5px;
+		  /* adjust this to move up and down. you may have to adjust the line height of the paragraph if you move it down a lot. */
+        bottom: -4px; 
+
+
+       /****** 
+       optional values below 
+       ******/
+        
+        /* center - (optional) use with adjusting width   */
+        margin: 0 auto;
+		  left: 0;
+        right: 0;
+		  width: 90%;
+		  background: green;
+		  
+		  /* optional animation */
+		  -o-transition:.5s;
+  		  -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+    }
+	 
+
+	 /* optional hover classes used with anmiation */
+	  .active_underline:hover:after {
+		  width: 80%;
+		  background: orange;
+    }
+
+
+
+
+
+    .inactive_underline {
+      text-decoration: none; 
+      position: relative; 
+    }   
+
+   .inactive_underline:after {
+       position: absolute;
+       content: '';
+       height: 5px;
+     /* adjust this to move up and down. you may have to adjust the line height of the paragraph if you move it down a lot. */
+       bottom: -4px; 
+
+
+      /****** 
+      optional values below 
+      ******/
+       
+       /* center - (optional) use with adjusting width   */
+       margin: 0 auto;
+     left: 0;
+       right: 0;
+     width: 50%;
+     background: transparent;
+     
+     /* optional animation */
+     -o-transition:.5s;
+       -ms-transition:.5s;
+       -moz-transition:.5s;
+       -webkit-transition:.5s;
+       transition:.5s;
+   }
+  
+
+  /* optional hover classes used with anmiation */
+   .inactive_underline:hover:after {
+     width: 80%;
+     background: orange;
+   }
