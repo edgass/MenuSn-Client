@@ -1,9 +1,9 @@
 export class Element {
-    private id?: string;
+     id?: string;
     private categoryId: string;
     private userId: string;
-    private name: string;
-    private prix: number;
+     name: string;
+     prix: number;
     private image: string;
     private description: string;
     

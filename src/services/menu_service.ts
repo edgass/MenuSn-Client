@@ -17,10 +17,10 @@ export class MenuService{
         try{
             const resp = db.collection('elements');
             // var data= await resp.get();
-             var data= await resp.where('userId' ,'==', 'jqbkvhqd').where('categoryId' ,'==', catId).get();
+             var data= await resp.where('hotelId' ,'==', 'HOnjOpu9qarlYU1SZzny').where('categoryId' ,'==', catId).get();
          
                  data.docs.forEach(item=>{
-                     console.log(item)
+                     console.log(item.data())
                    elements = [...elements,item.data()] as Element[];
               //  var element : Element = new Element(item.id,item.data().name,item.data().userId,item.data().name,item.data().prix,item.data().image,item.data().description);
                 //   elements = [...elements,element] as Element[];

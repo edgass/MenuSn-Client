@@ -2,8 +2,8 @@ import React from 'react';
 import { RestoTitle } from "./resto_title";
 export function MainHeader(){
     return(
-<header className="bg-white">
-    <div>
+<header className="bg-white w-full">
+    <div className=''>
          <nav className="bg-white border-gray-200 px-4 lg:px-2 py-2.5 dark:bg-gray-800">
             <div className="flex space-x-4 justify-between items-center mx-auto max-w-screen-xl">
                 <a href="qjlhk" className="flex items-center">

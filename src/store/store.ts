@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import  getAllCategorySlice  from './category-store';
+import  commandSlice  from './command-store';
 import getAllElementsSlice from './menu-store'
 
 export const store = configureStore({
   reducer: {
     getAllElements: getAllElementsSlice,
     getAllCategory: getAllCategorySlice,
+    command : commandSlice,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware(),

@@ -1,23 +1,43 @@
-import React from 'react';
+import {React} from 'react';
 import { SingleFood } from "../single_food";
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../hook'
 import {getAllElements} from '../store/menu-store'
-import { useEffect } from "react";
+import {addCatToSearch,setCatId} from '../store/menu-store'
+import { useEffect,useState } from "react";
+import { ConfirmAddToCommandModal } from './confirm_add_to_command_modal';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 
 export function Plats(){
 
     const state = useAppSelector(state => state.getAllElements)
+    const [showConfirmAddToCommandModal, setShowConfirmAddToCommandModal] = useState(false);
+    const [showConfirmCommandModal, setShowConfirmCommandModal] = useState(false);
+    const [elementToAddToCommand, setElementToAddToCommand] = useState("");
     const dispatch = useDispatch();
+
+  
 
 
 
     useEffect(()=>{
-        dispatch(getAllElements());
+      //  dispatch(setCatId("CD94PbwpWd7oQU1F5e2R"))
+        dispatch(getAllElements("CD94PbwpWd7oQU1F5e2R"));
     },[
         dispatch
     ])
+
+    const showModalFunction = show => {
+        setShowConfirmAddToCommandModal(show)
+       };
+    const showConfirmCommandModalFunction = show => {
+        setShowConfirmCommandModal(show)
+       };
+       const setElementToAddToCommandFunction = element => {
+        setElementToAddToCommand(element)
+        console.log(elementToAddToCommand)
+       };
 
 /*     const plats = [
         {
@@ -46,11 +66,15 @@ export function Plats(){
         },
     ] */
     return(
-        state.loading ==='pending' ? <div>loading...</div> :
-        <div className="px-10 py-5 w-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-           { state.entities.map((plat) => (<SingleFood name={plat.name} price={plat.prix} link={plat.image}/>))}
-
-     </div>
+        <>
+      {showConfirmAddToCommandModal === true ? <ConfirmAddToCommandModal elementToAddToCommand= {elementToAddToCommand} onChangeShowModalState={showModalFunction}/> :null}
+      {  state.loading ==='pending' ? <div className='px-10 py-5'><ProgressSpinner></ProgressSpinner></div> :
+        state.entities.length === 0 ? <div className='px-10 py-5'><div><h1>Nous en manquons actuellement</h1></div></div> :
+        <div className="px-10 py-5 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 justify-center items-center">
+           { state.entities.map((plat) => (<SingleFood element={plat} onElementToAddToCommandFunction={setElementToAddToCommandFunction} onChangeShowModalState={showModalFunction}/>))}
+        </div>
+        }
+     </>
     )
 
 }

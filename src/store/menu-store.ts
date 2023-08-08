@@ -1,4 +1,5 @@
 import { AnyAction, AsyncThunkAction, createAsyncThunk, createSlice, Dispatch } from "@reduxjs/toolkit"
+import { act } from "react-dom/test-utils";
 import { useSelector } from "react-redux";
 import { useAppSelector } from "../hook";
 import Element from "../model/element_model";
@@ -24,19 +25,11 @@ export const initialStateOfgetAllElements : MenuState = {
 
 export const getAllElements = createAsyncThunk(
     'elements/getAll',
-    async (_,{rejectWithValue,getState})=>{
-        const currentState = getState() as MenuState;
-        console.log(currentState.elementToSearch)
-        const  menuState  = currentState;
-        
+    async (arg:string,{getState,rejectWithValue})=>{    
+         const tt = getState()
         try{
-          
-           
-   
-          //  const { stateDatas } = getState() as { stateDatas: MenuState };
-            
-          //  console.log(stateDatas.elementToSearch)
-            return await menuService.getAllElements(currentState.elementToSearch);
+          //  console.log(arg)  
+            return await menuService.getAllElements(arg);
         }catch(err){
             console.log(err)
             return rejectWithValue([]);
@@ -51,11 +44,21 @@ export const getAllElementsSlice = createSlice({
     name: 'getAllElements',
     initialState: initialStateOfgetAllElements,
     reducers: {
+        setCatId :(state,action)=>{
+            console.log(action.payload)
+            state.elementToSearch = action.payload
+        },
         addCatToSearch :(state,action)=>{
-           state.elementToSearch = action.payload
-          //  state.elementToSearch = action.payload;
-            getAllElements();
-            console.log(state.elementToSearch);
+            try{
+                state.elementToSearch = action.payload
+
+            }catch(e){
+                console.log(e)
+            }
+           
+         //  console.log(state.elementToSearch)
+           
+          //  console.log(state.elementToSearch);
         }
     },
     extraReducers : (builder) =>{
@@ -80,7 +83,7 @@ export const getAllElementsSlice = createSlice({
 })
 
 export default getAllElementsSlice.reducer;
-export const {addCatToSearch} = getAllElementsSlice.actions
+export const {addCatToSearch,setCatId} = getAllElementsSlice.actions
 
 function dispatch(arg0: AsyncThunkAction<Element[], void, { state?: unknown; dispatch?: Dispatch<AnyAction> | undefined; extra?: unknown; rejectValue?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>) {
     throw new Error("Function not implemented.");
