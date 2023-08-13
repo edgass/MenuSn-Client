@@ -9,14 +9,17 @@ import menuService from "../services/menu_service";
 export interface CommandState{
     entities : SingleElementInCommande[],
     loading : 'idle' | 'pending' | 'succeded' | 'failed',
-    showConfirmCommandModal : Boolean
+    showConfirmCommandModal : Boolean,
+    showDeleteCommandModal : Boolean
+
 }
 
 
 export const initialStateOfCommand : CommandState = {
     entities : [],
     loading : 'idle',
-    showConfirmCommandModal : false
+    showConfirmCommandModal : false,
+    showDeleteCommandModal : false
 }
 
 export const postNewCommand = createAsyncThunk(
@@ -110,6 +113,9 @@ export const commandSlice = createSlice({
         },
         setShowConfirmCommandModal(state,action){
             state.showConfirmCommandModal = action.payload;
+        },
+        setShowDeleteCommandModal(state,action){
+            state.showDeleteCommandModal = action.payload;
         }
     },
      extraReducers : (builder) =>{
@@ -134,5 +140,5 @@ export const commandSlice = createSlice({
 })
 
 export default commandSlice.reducer;
-export const {getCommand,setCommand,setShowConfirmCommandModal} = commandSlice.actions
+export const {getCommand,setCommand,setShowConfirmCommandModal,setShowDeleteCommandModal} = commandSlice.actions
 
