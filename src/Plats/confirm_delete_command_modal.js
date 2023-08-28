@@ -69,7 +69,7 @@ export function ConfirmDeleteCommandModal(props){
             ()=>{
              localStorage.removeItem("command")
              dispatch(setShowDeleteCommandModal(false),
-             getCommand
+             dispatch(getCommand())
              )
           
             }

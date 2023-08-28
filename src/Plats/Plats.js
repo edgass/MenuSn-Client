@@ -11,7 +11,7 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 
 export function Plats(){
 
-    const state = useAppSelector(state => state.getAllElements)
+    const state = useAppSelector(state => state.getAllElements);
     const [showConfirmAddToCommandModal, setShowConfirmAddToCommandModal] = useState(false);
     const [showConfirmCommandModal, setShowConfirmCommandModal] = useState(false);
     const [elementToAddToCommand, setElementToAddToCommand] = useState("");
@@ -36,7 +36,6 @@ export function Plats(){
        };
        const setElementToAddToCommandFunction = element => {
         setElementToAddToCommand(element)
-        console.log(elementToAddToCommand)
        };
 
 /*     const plats = [

@@ -57,6 +57,8 @@ export const commandSlice = createSlice({
             const storedValue = localStorage.getItem("command");
             if(storedValue !== null && storedValue !== ""){
                 state.entities = JSON.parse(storedValue ?? "");
+            }else{
+                state.entities = [];
             }
             
         },

@@ -17,7 +17,7 @@ export class MenuService{
         try{
             const resp = db.collection('elements');
             // var data= await resp.get();
-             var data= await resp.where('hotelId' ,'==', 'HOnjOpu9qarlYU1SZzny').where('categoryId' ,'==', catId).get();
+             var data= await resp.where('hotelId' ,'==', 'HOnjOpu9qarlYU1SZzny').where('categoryId' ,'==', catId).where('visible' ,'==', true).get();
          
                  data.docs.forEach(item=>{
                      console.log(item.data())

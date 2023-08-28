@@ -24,10 +24,11 @@ export class CommandService{
              // Ajouter un nouveau document à la collection "commandes"
     const docRef = await addDoc(collection(db, "commande"), {
         hotelId:"dkzhbzek",
-        emplacement: "hjvkh",
+        emplacement: "Table 5",
         printed:false,
         delivered: false,
         elements: elements,
+        state : "Attente"
         
       });
   
