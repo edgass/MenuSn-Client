@@ -10,7 +10,9 @@ export interface MenuState{
     entities : Element[],
     loading : 'idle' | 'pending' | 'succeded' | 'failed',
     errorMessage ? : string,
-    elementToSearch : string
+    elementToSearch : string,
+    showDetailsModal : boolean,
+    currentElementDetails: Element | null
 }
 
 interface RootState {
@@ -20,7 +22,9 @@ interface RootState {
 export const initialStateOfgetAllElements : MenuState = {
     entities : [],
     loading : 'idle',
-    elementToSearch : "CD94PbwpWd7oQU1F5e2R"
+    elementToSearch : "CD94PbwpWd7oQU1F5e2R",
+    showDetailsModal : false,
+    currentElementDetails : null
 }
 
 export const getAllElements = createAsyncThunk(
@@ -47,6 +51,7 @@ export const getAllElementsSlice = createSlice({
         setCatId :(state,action)=>{
             console.log(action.payload)
             state.elementToSearch = action.payload
+            
         },
         addCatToSearch :(state,action)=>{
             try{
@@ -59,6 +64,12 @@ export const getAllElementsSlice = createSlice({
          //  console.log(state.elementToSearch)
            
           //  console.log(state.elementToSearch);
+        },
+        setShowDetailModal:(state,action)=>{
+            state.showDetailsModal = action.payload
+        },
+        setCurrentElementDetail:(state,action)=>{
+            state.currentElementDetails = action.payload
         }
     },
     extraReducers : (builder) =>{
@@ -83,7 +94,7 @@ export const getAllElementsSlice = createSlice({
 })
 
 export default getAllElementsSlice.reducer;
-export const {addCatToSearch,setCatId} = getAllElementsSlice.actions
+export const {addCatToSearch,setCatId,setShowDetailModal,setCurrentElementDetail} = getAllElementsSlice.actions
 
 function dispatch(arg0: AsyncThunkAction<Element[], void, { state?: unknown; dispatch?: Dispatch<AnyAction> | undefined; extra?: unknown; rejectValue?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>) {
     throw new Error("Function not implemented.");

@@ -1,7 +1,7 @@
 export class Element {
      id?: string;
     private categoryId: string;
-    private userId: string;
+    private userId?: string;
      name: string;
      prix: number;
     private image: string;

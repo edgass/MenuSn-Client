@@ -1,0 +1,5 @@
+.main{
+    background-image: url(""), url("paper.gif");
+  background-repeat: no-repeat, repeat;
+  background-color: #cccccc;
+}

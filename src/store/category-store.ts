@@ -7,11 +7,13 @@ export interface CategoryState{
     entities : Category[],
     loading : 'idle' | 'pending' | 'succeded' | 'failed',
     errorMessage ? : string
+    currentCategory:Category | null
 }
 
 export const initialStateOfgetAllCategory : CategoryState = {
     entities : [],
-    loading : 'idle'
+    loading : 'idle',
+    currentCategory:null
 }
 
 export const getAllCategory = createAsyncThunk(
@@ -29,7 +31,10 @@ export const getAllCategorySlice = createSlice({
     name: 'getAllCategory',
     initialState: initialStateOfgetAllCategory,
     reducers: {
-
+        setCurrentCategory:(state,action)=>{
+            console.log(action.payload)
+            state.currentCategory = action.payload;
+        }
     },
     extraReducers : (builder) =>{
         builder.addCase(getAllCategory.pending,(state,action)=>{
@@ -47,9 +52,12 @@ export const getAllCategorySlice = createSlice({
         
             state.loading = 'succeded';
             state.entities = action.payload;
+            state.currentCategory = action.payload[0]
+            console.log(state.currentCategory)
         });
 
     }
 })
 
 export default getAllCategorySlice.reducer;
+export const {setCurrentCategory} = getAllCategorySlice.actions

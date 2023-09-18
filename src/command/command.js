@@ -52,7 +52,7 @@ export function Command(){
         
         </div>
         { stateofCommand.entities.length !== 0 ?
-        <div className="text-center">
+        <div className="text-center row flex-row">
             <button class="bg-green-400 mx-2 px-3 py-2 my-2 text-white rounded-2xl shadow w-48"
             onClick={
             

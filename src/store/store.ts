@@ -9,6 +9,7 @@ export const store = configureStore({
     getAllCategory: getAllCategorySlice,
     command : commandSlice,
   },
+  devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware(),
 })

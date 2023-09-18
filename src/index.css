@@ -5,11 +5,24 @@
 
 body {
   margin: 0;
+  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   
+
+}
+
+.bg{
+  background-image: url('https://www.fosterfastfood.be/uploads/images/_w1920/foster_burger_side2_2022-01-18-092509_cgck.jpg');
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
 }
 
 code {

@@ -14,17 +14,28 @@ import "primereact/resources/primereact.min.css";
 
 //icons
 import "primeicons/primeicons.css"; 
+import App2 from './App copy';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-  
+ /* 
 root.render(
   <React.StrictMode>
     
     <Provider store={store}>
     <MainHeader/>  
-    <App />
+     <App />
     </Provider>
   </React.StrictMode>
 );
 
+*/
+
+root.render(
+  <React.StrictMode>
+    
+    <Provider store={store}> 
+     <App2 />
+    </Provider>
+  </React.StrictMode>
+);

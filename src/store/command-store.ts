@@ -1,16 +1,17 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { SingleCommandElementInCommand } from "../command/single_command_element_in_command";
-import { SingleElementInCommande } from "../model/command_model";
 import SingleElementInCommandeModel from "../model/single_element_in_command_model";
 import commandService from "../services/command_service";
 import menuService from "../services/menu_service";
+import toast from 'react-hot-toast';
 
 
 export interface CommandState{
-    entities : SingleElementInCommande[],
+    entities : SingleElementInCommandeModel[],
     loading : 'idle' | 'pending' | 'succeded' | 'failed',
     showConfirmCommandModal : Boolean,
     showDeleteCommandModal : Boolean
+    showCommandDetails : Boolean,
 
 }
 
@@ -19,7 +20,8 @@ export const initialStateOfCommand : CommandState = {
     entities : [],
     loading : 'idle',
     showConfirmCommandModal : false,
-    showDeleteCommandModal : false
+    showDeleteCommandModal : false,
+    showCommandDetails:false
 }
 
 export const postNewCommand = createAsyncThunk(
@@ -64,12 +66,14 @@ export const commandSlice = createSlice({
         },
         setCommand :(state,action)=>{
          try{
+       
                 const storedValue = localStorage.getItem("command");
                 state.entities = [];
                 console.log(action.payload)
                 if(storedValue == null){
                     state.entities = [action.payload]
                     localStorage.setItem("command",JSON.stringify(state.entities))
+                   
                 }else{
 
                     const actualValues = JSON.parse(storedValue ?? "");
@@ -82,12 +86,14 @@ export const commandSlice = createSlice({
                                 const newQtt = item.quantity+action.payload.quantity
                                 const newValueOfExistedElementInCommand = new SingleElementInCommandeModel(action.payload.element,parseInt(newQtt))
                                 state.entities = [...state.entities, newValueOfExistedElementInCommand]
+                               
                             }else{
                                 console.log("exist but is different")
                                 console.log(item)
     
                                 state.entities = [...state.entities,item]
                                 console.log(state.entities)
+                               
     
                             }
                         })
@@ -96,6 +102,7 @@ export const commandSlice = createSlice({
                         console.log(element)
 
                         state.entities = [...actualValues,action.payload]
+                       
                     }
                     localStorage.removeItem("command")
                     //state.entities = [...actualValues,action.payload]
@@ -104,11 +111,13 @@ export const commandSlice = createSlice({
                  
                 }
                console.log(state.entities.length)
+               toast.success("Ajouté avec succés")
 
             }catch(e){
                 console.log(e)
+                toast.error("Erreur d'ajout")
             }
-           
+           //https://react-hot-toast.com/docs => doc for this toast
          //  console.log(state.elementToSearch)
            
           //  console.log(state.elementToSearch);
@@ -118,6 +127,11 @@ export const commandSlice = createSlice({
         },
         setShowDeleteCommandModal(state,action){
             state.showDeleteCommandModal = action.payload;
+        },
+        setShowCommandDetails(state,action){
+          
+            state.showCommandDetails = action.payload;
+            
         }
     },
      extraReducers : (builder) =>{
@@ -142,5 +156,5 @@ export const commandSlice = createSlice({
 })
 
 export default commandSlice.reducer;
-export const {getCommand,setCommand,setShowConfirmCommandModal,setShowDeleteCommandModal} = commandSlice.actions
+export const {getCommand,setCommand,setShowConfirmCommandModal,setShowDeleteCommandModal,setShowCommandDetails} = commandSlice.actions
 
