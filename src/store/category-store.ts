@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { Category } from "../model/category-model";
 import menuService from "../services/menu_service";
+import { getAllElements } from "./menu-store";
 
 
 export interface CategoryState{
@@ -52,8 +53,7 @@ export const getAllCategorySlice = createSlice({
         
             state.loading = 'succeded';
             state.entities = action.payload;
-            state.currentCategory = action.payload[0]
-            console.log(state.currentCategory)
+            state.currentCategory = action.payload[0]     
         });
 
     }

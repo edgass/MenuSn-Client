@@ -8,7 +8,11 @@ module.exports = {
       'nunito': ['nunito', 'sans-serif'],
       'MyFont': ['"My Font"', 'serif'] // Ensure fonts with spaces have " " surrounding it.
     },
-    extend: {},
+    extend: {
+      colors:{
+        'ownOrange' : '#F59E0B'
+      }
+    },
   },
   plugins: [],
 }

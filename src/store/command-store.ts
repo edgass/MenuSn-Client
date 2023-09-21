@@ -12,6 +12,7 @@ export interface CommandState{
     showConfirmCommandModal : Boolean,
     showDeleteCommandModal : Boolean
     showCommandDetails : Boolean,
+    totalPriceOfCommand: number
 
 }
 
@@ -21,14 +22,15 @@ export const initialStateOfCommand : CommandState = {
     loading : 'idle',
     showConfirmCommandModal : false,
     showDeleteCommandModal : false,
-    showCommandDetails:false
+    showCommandDetails:false,
+    totalPriceOfCommand : 0
 }
 
 export const postNewCommand = createAsyncThunk(
     'command/new',
-    async (_,{rejectWithValue})=>{
+    async (arg:string,{rejectWithValue})=>{
         try{
-            return await commandService.postNewCommand("hjcscsd","gyzgvi");
+            return await commandService.postNewCommand("hjcscsd","gyzgvi",arg);
         }catch(err){
             return rejectWithValue([]);
         }
@@ -55,14 +57,48 @@ export const commandSlice = createSlice({
     name: 'command',
     initialState: initialStateOfCommand,
     reducers: {
+        reset: () => initialStateOfCommand,
         getCommand :(state,action)=>{
             const storedValue = localStorage.getItem("command");
             if(storedValue !== null && storedValue !== ""){
                 state.entities = JSON.parse(storedValue ?? "");
+                //Calcul du prix total
+                state.totalPriceOfCommand = 0;
+                state.entities.map(el=>{
+                    let sousTotal = el.element.prix*el.quantity
+                    state.totalPriceOfCommand = state.totalPriceOfCommand+sousTotal
+                   })
             }else{
                 state.entities = [];
             }
             
+        },
+        deleteCommandeItem : (state,action)=>{
+            try{
+                const storedValue = localStorage.getItem("command");
+                state.entities = [];
+                if(storedValue != null && storedValue != undefined){
+                    const actualValues = JSON.parse(storedValue ?? "");
+                    for(let i=0;i<actualValues.length;i++){
+                        if(actualValues[i].element.name !== action.payload.element.name && actualValues[i].element.prix !== action.payload.element.prix){
+                            console.log(actualValues[i].element.name)
+                            state.entities = [...state.entities,actualValues[i]]
+                           
+                        }
+                        localStorage.removeItem("command")
+                        //state.entities = [...actualValues,action.payload]
+                        localStorage.setItem("command",JSON.stringify(state.entities))
+                    }
+                }
+                 //Calcul du prix total
+                 state.totalPriceOfCommand = 0;
+                 state.entities.map(el=>{
+                    let sousTotal = el.element.prix*el.quantity
+                    state.totalPriceOfCommand = state.totalPriceOfCommand+sousTotal
+                   })
+            }catch(e){
+
+            }
         },
         setCommand :(state,action)=>{
          try{
@@ -81,6 +117,7 @@ export const commandSlice = createSlice({
                     if(element !== null && element !== undefined){
                         console.log(element)
                         actualValues.map((item: SingleElementInCommandeModel)=>{
+                            
                             if(item.element.name === action.payload.element.name && item.element.prix === action.payload.element.prix){
                                 console.log("it exist")
                                 const newQtt = item.quantity+action.payload.quantity
@@ -88,6 +125,8 @@ export const commandSlice = createSlice({
                                 state.entities = [...state.entities, newValueOfExistedElementInCommand]
                                
                             }else{
+                                console.log("element name : " +item.element.name+ " payload name : "+action.payload.element.name)
+                            console.log("element price : " +item.element.prix+ " payload name : "+action.payload.element.prix)
                                 console.log("exist but is different")
                                 console.log(item)
     
@@ -107,10 +146,16 @@ export const commandSlice = createSlice({
                     localStorage.removeItem("command")
                     //state.entities = [...actualValues,action.payload]
                     localStorage.setItem("command",JSON.stringify(state.entities))
+                     //Calcul du prix total
+                     state.totalPriceOfCommand = 0;
+                    state.entities.map(el=>{
+                        let sousTotal = el.element.prix*el.quantity
+                        state.totalPriceOfCommand = state.totalPriceOfCommand+sousTotal
+                    })
                     
                  
                 }
-               console.log(state.entities.length)
+          
                toast.success("Ajouté avec succés")
 
             }catch(e){
@@ -150,11 +195,12 @@ export const commandSlice = createSlice({
 
         builder.addCase(postNewCommand.fulfilled,(state,action)=>{
             state.loading = 'succeded';
+            
            
         });
     } 
 })
 
 export default commandSlice.reducer;
-export const {getCommand,setCommand,setShowConfirmCommandModal,setShowDeleteCommandModal,setShowCommandDetails} = commandSlice.actions
+export const {getCommand,setCommand,setShowConfirmCommandModal,setShowDeleteCommandModal,setShowCommandDetails,deleteCommandeItem,reset} = commandSlice.actions
 

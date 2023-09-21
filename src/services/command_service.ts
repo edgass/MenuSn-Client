@@ -13,7 +13,7 @@ export class CommandService{
 
     
    // async postNewCommand(hotelId:string,tableId:String,) : Promise<Element[]>{
-        async postNewCommand(hotelId:string,tableId:String,){
+        async postNewCommand(hotelId:string,tableId:String,clientName:string){
             var elements : Element[] = [];
             const storedValue = localStorage.getItem("command");
             if(storedValue !== null && storedValue !== ""){
@@ -28,7 +28,8 @@ export class CommandService{
         printed:false,
         delivered: false,
         elements: elements,
-        state : "Attente"
+        state : "Attente",
+        clientName:clientName
         
       });
   

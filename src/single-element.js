@@ -46,9 +46,11 @@ export function SingleElement(props) {
           </div>
           
 
+         <div className=" h-1/5">
+         <h1 className="mx-3 mt-3 font-bold">{props.element.name} </h1>
+          <p className="mx-3 overflow-hidden h-full truncate">{props.element.description} </p>
+         </div>
          
-          <h1 className="mx-3 mt-3 font-bold">{props.element.name} </h1>
-          <p className="mx-3">{props.element.description} </p>
         
         </div>
 

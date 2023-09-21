@@ -15,10 +15,14 @@ export function CategorysDisplay() {
 
   useEffect(()=>{
     async function fetchCat(){
-     dispatch(await getAllCategory());
+     dispatch(getAllCategory());
+  
     
     }
+
+
    fetchCat()
+   
   
     
     

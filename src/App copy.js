@@ -48,9 +48,9 @@ export function App2() {
    return (
     <div className="relative">
 
-       
+
         <nav ref={elementRef} className="z-10 h-1/4 bg-slate-50 w-full sticky top-0">
-          <div onClick={()=>dispatch(setShowCommandDetails(true))} className="bg-yellow-100 h-3/4" style={{backgroundImage: `url('https://teyliomproperties.com/wp-content/uploads/2021/08/IMG_4678.jpg')`,backgroundSize: 'cover',
+          <div onClick={()=>dispatch(setShowCommandDetails(true))} className="bg-yellow-100 h-3/4" style={{backgroundImage: `url('http://pointe.hotelfleurdelysdakar.com/wp-content/uploads/2022/04/1122647.jpg')`,backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         width: '100%',}}>
@@ -67,7 +67,7 @@ export function App2() {
           
           
           <div className="bg-slate-50 px-3">
-          <h1 className="m-3 text-xl font-bold">Hotel Fleur D'elice</h1>
+          <h1 className="my-3 ml-1 text-xl font-bold">Hôtel Fleur de Lys</h1>
             <CategorysDisplay/>
           </div>
         
@@ -103,6 +103,10 @@ export function App2() {
         </Sheet.Container>
         <Sheet.Backdrop />
       </Sheet>
+
+    
+
+
     </div>
     
   );

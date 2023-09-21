@@ -95,7 +95,7 @@ export function FoodDetails(props) {
                 Ajouter à ma commande
               </button>
 
-              <button onClick={()=>dispatch(setShowDetailModal(false))} class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-5 px-7 border border-orange-700 rounded-3xl">
+              <button onClick={()=>dispatch(setShowDetailModal(false))} class="bg-[#F59E0B] hover:bg-[#F59E0B] text-white font-bold py-5 px-7 rounded-3xl">
                 X
               </button>
               </div>

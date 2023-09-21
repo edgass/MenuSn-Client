@@ -1,7 +1,7 @@
 export class Category {
-    private id?: string;
-    private name: string;
-    private position: number;
+     id?: string;
+     name: string;
+     position: number;
     
   
   
