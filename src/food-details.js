@@ -55,10 +55,14 @@ export function FoodDetails(props) {
           <div className="z-10 bg-slate-50 h-2/4 absolute bottom-0 w-full rounded-t-3xl">
           
 
-            <div className="static">
+            <div className="static h-full">
+           <div className="h-auto">
+           <p className="m-6 text-2xl font-bold">{stateElement.currentElementDetails.name} </p>
+            <p className="m-6 overflow-hidden text-ellipsis ">{stateElement.currentElementDetails.description}</p>
+           </div>
+            
            
-            <p className="m-6 text-3xl font-bold">{stateElement.currentElementDetails.name} </p>
-            <p className="m-6 ">{stateElement.currentElementDetails.description}</p>
+
            <div className="px-8 absolute bottom-6 w-full">
             <div className="justify-start w-1/3 ">
               <div className="mx-28 my-3 flex justify-around">
@@ -91,7 +95,7 @@ export function FoodDetails(props) {
             //      openSuccessAddToCommand(props)
                   /* props.onChangeShowModalState(false) */
                 }
-              } class="bg-black hover:bg-slate-800 text-white font-bold py-5 px-4 border border-blue-700 rounded-3xl">
+              } class="bg-black hover:bg-slate-800 text-white font-bold py-5 px-4 rounded-3xl">
                 Ajouter à ma commande
               </button>
 

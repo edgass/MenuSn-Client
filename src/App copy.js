@@ -17,6 +17,7 @@ import { Command } from "./command/command";
 import CommandDetails from "./commandDetails";
 import { setShowCommandDetails } from "./store/command-store";
 import { Toaster } from "react-hot-toast";
+import {Helmet} from "react-helmet";
 
 
 export function App2() {
@@ -47,7 +48,12 @@ export function App2() {
 
    return (
     <div className="relative">
-
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Menu Sn</title>
+                <link rel="canonical" href="http://menu-sn.s3-website.eu-west-3.amazonaws.com/" />
+                <meta name="description" content="La solution n°1 de menus digitalisés complet au Sénégal " />
+            </Helmet>
 
         <nav ref={elementRef} className="z-10 h-1/4 bg-slate-50 w-full sticky top-0">
           <div onClick={()=>dispatch(setShowCommandDetails(true))} className="bg-yellow-100 h-3/4" style={{backgroundImage: `url('http://pointe.hotelfleurdelysdakar.com/wp-content/uploads/2022/04/1122647.jpg')`,backgroundSize: 'cover',

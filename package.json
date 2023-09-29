@@ -2,7 +2,6 @@
   "name": "menusn",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://edgass.github.io/MenuSn-Client",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -22,6 +21,7 @@
     "react": "^18.2.0",
     "react-animated-numbers": "^0.16.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
     "react-modal-sheet": "^2.0.0",
     "react-redux": "^8.0.5",
